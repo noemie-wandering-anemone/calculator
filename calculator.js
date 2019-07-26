@@ -26,10 +26,10 @@ function buttonEffect () {
     
     
     
-    //else {
-      //entries.push(button);
-      //display.value += button;
-    //}
+    else {
+      entries.push(button);
+      display.value += button;
+    }
 
 
 }
