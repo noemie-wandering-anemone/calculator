@@ -15,18 +15,28 @@ function buttonEffect () {
       //reset all variables
       entries = [];
       input = "";
-      display.value = "";// how to display 0 as value without 0 staying when typing
+      display.value = "0";// how to display 0 as value without 0 staying when typing
     } //else if (button === "x") {
       //entries.push(*);
       //display.value += button;
     //}
     //else if (button === "") {}
     else if (button === "=") {
+      //Perform operation
       display.value = eval(display.value);          //replace eval() as it's a security risk
-      console.log(display.value)
     } else {
-      entries.push(button);
-      display.value += button;
+      if (button === "0" && display.value.length === 1){
+        //do not add multiple zeros at the start
+        return; 
+      } else if (display.value === "0") {
+        //remove default zero when starting a calculation
+        display.value = button;
+      } else {
+        //add numbers and operands to the display field
+        entries.push(button);
+        display.value += button;
+      };
+      
     }
 
 
