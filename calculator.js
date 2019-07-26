@@ -29,6 +29,8 @@ function buttonEffect () {
 }
 
 
+
+
 function allClear () {
   entries = [];
   input = "";
@@ -56,6 +58,13 @@ function isNumber (button) {
     return;
   } else {
     input += button;
-    display.value = input;
+    display.value += button; //Keep the full formula in display field
   }
+}
+
+function storeNumber (button) {
+  entries.push(input);
+  entries.push(button);
+  input = "";
+  display.value += button;
 }
