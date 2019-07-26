@@ -21,12 +21,10 @@ function buttonEffect () {
       //display.value += button;
     //}
     //else if (button === "") {}
-    //else if (button === "=") {}
-    
-    
-    
-    
-    else {
+    else if (button === "=") {
+      display.value = eval(display.value);          //replace eval() as it's a security risk
+      console.log(display.value)
+    } else {
       entries.push(button);
       display.value += button;
     }
