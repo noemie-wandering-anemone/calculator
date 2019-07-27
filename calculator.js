@@ -1,7 +1,8 @@
 var entries = [];
 var input = "";
+var result = 0;
 
-let display = document.getElementById("display"); //access the html input tag with id = display
+const display = document.getElementById("display"); //access the html input tag with id = display
 
 listen();
 
@@ -33,18 +34,19 @@ function buttonEffect() {
 function allClear() {
   entries = [];
   input = "";
+  result = 0;
   display.value = "0";
 }
 
 function clear() {
   input = "";
-  display.value = input;
+  display.value = entries.join(" ");
 }
 
 function calculate() {
   entries.push(input);
   input = "";
-  var result = parseInt(entries[0], 10);
+  result = parseInt(entries[0], 10);
   for (var i = 1; i < entries.length; i += 2) {
     var operator = entries[i];
     var num = parseInt(entries[i + 1]);
@@ -61,6 +63,7 @@ function calculate() {
       result /= num;
     }
   }
+  entries = [];
   display.value = result;
 }
 
@@ -73,13 +76,20 @@ function isNumber(button) {
     return;
   } else {
     input += button;
-    display.value = input; //Keep the full formula in display field
+    display.value = entries.join(" ") + " " + input; //Keep the full formula in display field
   }
 }
 
 function storeNumber(button) {
-  entries.push(input);
-  entries.push(button);
-  input = "";
-  display.value += button;
+  if (isNaN(entries[entries.length - 1]) && entries.length > 0) {
+    entries[entries.length - 1] = button;
+  } else if (input === "") {
+    entries.push(result);
+    entries.push(button);
+  } else {
+    entries.push(input);
+    entries.push(button);
+    input = "";
+  }
+  display.value = entries.join(" ");
 }
