@@ -75,16 +75,16 @@ function calculate() {
 }
 
 function isNumber(button) {
-  if (button === "0" && input === "") {
-    //do not add multiple zeros at the start
-    return;
+  if (button !== "." && input === "0") {
+    //do not add multiple zeros at the start and replace 0 by digit
+    input = button;
   } else if (input.includes(".") && button === ".") {
     //prevent from adding a . if one is already there
     return;
   } else {
     input += button;
-    display.value = entries.join(" ") + " " + input; //Keep the full formula in display field
   }
+  display.value = entries.join(" ") + " " + input; //Keep the full formula in display field
 }
 
 function storeNumber(button) {
