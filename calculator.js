@@ -81,9 +81,11 @@ function isNumber(button) {
 }
 
 function storeNumber(button) {
-  if (isNaN(entries[entries.length - 1]) && entries.length > 0) {
+  if (entries.length > 0 && input === "") {
+    //Replace operator if pressing a new one
     entries[entries.length - 1] = button;
   } else if (input === "") {
+    //Reuse previous result immediately
     entries.push(result);
     entries.push(button);
   } else {
