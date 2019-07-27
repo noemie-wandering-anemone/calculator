@@ -6,8 +6,10 @@ let display = document.getElementById('display'); //access the html input tag wi
 listen();
 
 function listen () {
-  //var buttons = document.getElementsByTagName('button');
-  document.addEventListener('click', buttonEffect); //listen to each click on page. Can it be limited to button elements?
+  var buttons = document.getElementsByTagName('button');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', buttonEffect);
+  }
 }
 
 function buttonEffect () {
@@ -28,9 +30,6 @@ function buttonEffect () {
     };
 }
 
-
-
-
 function allClear () {
   entries = [];
   input = "";
@@ -39,11 +38,12 @@ function allClear () {
 
 function clear () {
   input = "";
-  display.value = "0";
+  display.value = input;
 }
 
 function calculate () {
-  display.value = eval(display.value);         //replace eval() as it's a security risk  
+  //entries.push(input);
+  display.value = eval(display.value);         //replace eval() as it's a security risk. Use                                                  entries array instead
 }
 
 function isNumber (button) {
@@ -54,11 +54,11 @@ function isNumber (button) {
     //remove default zero when starting a calculation with a digit
     display.value = button;
   } else if (input.includes(".") && button === ".") {
-    //prevent from adding a . if one is already there - broken, need to temporary store values
+    //prevent from adding a . if one is already there
     return;
   } else {
     input += button;
-    display.value += button; //Keep the full formula in display field
+    display.value = input; //Keep the full formula in display field
   }
 }
 
