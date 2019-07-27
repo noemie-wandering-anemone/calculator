@@ -21,6 +21,8 @@ function buttonEffect() {
   } else if (button === "C") {
     //reset the last entry
     clear();
+  } else if (button === "Ans") {
+    reusePreviousAnswer();
   } else if (button === "=") {
     //Perform operation
     calculate();
@@ -41,6 +43,11 @@ function allClear() {
 function clear() {
   input = "";
   display.value = entries.join(" ");
+}
+
+function reusePreviousAnswer() {
+  input = result.toString();
+  display.value = entries.join(" ") + " " + input;
 }
 
 function calculate() {
